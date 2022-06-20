@@ -10,6 +10,7 @@ import { selectIsAuthenticated } from 'src/app/core/auth-store/selectors';
 import { select, Store } from '@ngrx/store';
 import { LocalStorageService } from '../service/local-storage.service';
 import { State } from 'src/app/core/auth-store/state';
+import { AUTH_KEY } from 'src/app/core/auth-store/effects';
 
 @Injectable()
 export class HttpHeaderInterceptor implements HttpInterceptor {
@@ -21,7 +22,7 @@ export class HttpHeaderInterceptor implements HttpInterceptor {
     let isAuthenticated = this.store.pipe(select(selectIsAuthenticated));   
 
      if (isAuthenticated) {
-       let authHeader = `Bearer ${selectIsAuthenticated}`;
+       let authHeader = `Bearer ${this.localStorageService.getItem(AUTH_KEY)}`;
         request = request.clone({
           setHeaders: {
               Authorization: authHeader
