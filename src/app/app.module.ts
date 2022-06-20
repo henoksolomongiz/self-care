@@ -9,7 +9,7 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared/shared.module'; 
 
 @NgModule({
   declarations: [
