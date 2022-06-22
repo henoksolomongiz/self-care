@@ -15,7 +15,7 @@ export class DataService {
   logout(): Observable<any> {
     return this.http.get<any>(environment.serverUrl + 'logout');
   }
-  offer(): Observable<Offer[]> {
+  offer(): Observable<any> {
     return this.http.get<Offer[]>(environment.serverUrl + 'offers');
   }
   subscription(offerId: Number): Observable<any> {

@@ -25,7 +25,7 @@ import { NotificationService } from 'src/app/shared/service/notification.service
           .pipe(
             map(items =>
               offerActions.loadSuccess({
-                offers: items
+                offers: items.offers
               })
             ),
             catchError(error => of(offerActions.actionFailure({ error })))

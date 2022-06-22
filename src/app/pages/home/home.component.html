@@ -1,1 +1,14 @@
-<p>home works!</p>
+<mat-progress-bar *ngIf="offers.length == 0"
+          [mode]="'indeterminate'">
+</mat-progress-bar>
+<mat-list *ngIf="offers.length>0" class="list">
+    <div mat-subheader class="title">Offers</div>
+    <mat-list-item *ngFor="let offer of offers">
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <div mat-line>{{offer.name}}</div>
+      <div mat-line> {{offer.contractStartDate| date}} </div>
+      <div mat-line> {{offer.contractEndDate| date}} </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+   
+  </mat-list>

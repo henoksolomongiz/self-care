@@ -11,6 +11,7 @@ const featureReducer = createReducer(
   })),
 
   on(offerActions.loadSuccess, (state, { offers }) => {
+  
     return offerAdapter.addMany(offers, {
       ...state,
       offers: offers,

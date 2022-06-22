@@ -11,7 +11,8 @@ mat-form-field {
   background: rgb(6, 91, 146);
   background: $main-background-color;
 }
-.login-form {  
+.login-form { 
+  width: 350px; 
   position: absolute;
   top: 40%;
   left: 45%;
@@ -33,4 +34,9 @@ font-size: 3em;
 .extra {
   margin-top: 20px;
   width: 300px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto; 
+  padding: 10px 0;
 }
