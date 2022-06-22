@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ofType, createEffect, Actions } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
+import { DataService } from 'src/app/shared/service/data.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
  
 import { authLogin, authLogout } from './actions';
@@ -14,8 +15,14 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(authLogin),
-        tap(() =>
-          this.localStorageService.setItem(AUTH_KEY, { isAuthenticated: true })
+        tap((res) =>
+        {
+          this.dataService.login({userName: res.username, password: res.password}).subscribe( (res)=>{
+            this.localStorageService.setItem(AUTH_KEY, res.authToken);
+            this.router.navigateByUrl("home");
+             
+          })
+         }
         )
       ),
     { dispatch: false }
@@ -27,9 +34,7 @@ export class AuthEffects {
         ofType(authLogout),
         tap(() => {
           this.router.navigate(['']);
-          this.localStorageService.setItem(AUTH_KEY, {
-            isAuthenticated: false
-          });
+          this.localStorageService.setItem(AUTH_KEY,null );
         })
       ),
     { dispatch: false }
@@ -38,6 +43,6 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router, private dataService: DataService
   ) {}
 }

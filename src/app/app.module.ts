@@ -10,6 +10,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module'; 
+import { EffectsModule } from '@ngrx/effects';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,9 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([]),
     CoreModule,
-    SharedModule
+    SharedModule, PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
